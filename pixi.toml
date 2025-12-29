@@ -35,8 +35,3 @@ zlib = "*"
 # Baseline for Ubuntu 24.04 (Noble) compatibility if using the latest base images
 linux = "6.8"
 libc = { family = "glibc", version = "2.39" }
-
-[concurrency]
-# Optimize download and solve concurrency
-downloads = 50
-solves = 4
