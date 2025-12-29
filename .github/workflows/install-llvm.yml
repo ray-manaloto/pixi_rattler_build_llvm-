@@ -1,0 +1,41 @@
+name: Install LLVM 22 and Clang P2996 via Pixi
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Pixi
+        uses: prefix-dev/setup-pixi@v0.40.0
+        with:
+          cache: true
+
+      - name: Install environment with Pixi
+        run: |
+          # Install the Pixi environment defined in pixi.toml.
+          # According to Pixi documentation, `pixi install` resolves dependencies and updates the lockfile if necessary.
+          pixi install --all
+
+      - name: Build LLVM 22 package
+        run: |
+          # Build the LLVM 22 package using the Rattler build backend.
+          # Ensure recipes/llvm-22/recipe.yaml exists in your repository.
+          pixi build recipes/llvm-22/recipe.yaml
+
+      - name: Build Clang P2996 package
+        run: |
+          # Build the Clang P2996 package (C++26 reflection fork).
+          # Ensure recipes/clang-p2996/recipe.yaml exists in your repository.
+          pixi build recipes/clang-p2996/recipe.yaml
+
+      - name: Verify installation
+        run: |
+          # Test that clang++ from the built package is available.
+          pixi run clang++ --version
