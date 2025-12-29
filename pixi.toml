@@ -2,6 +2,7 @@
 name = "llvm-reflection-workspace"
 channels = ["conda-forge", "https://prefix.dev/conda-forge"]
 platforms = ["linux-64"]
+preview = ["pixi-build"]
 
 [package]
 name = "clang-p2996"
@@ -12,14 +13,14 @@ description = "Experimental C++26 Reflection Compiler (Bloomberg Fork)"
 backend = { name = "pixi-build-rattler-build", version = "0.1.*" }
 configuration = { recipe = "recipes/clang-p2996/recipe.yaml" }
 
-[build-dependencies]
+[package.build-dependencies]
 cmake = ">=3.30"
 ninja = ">=1.12"
 cxx-compiler = ">=1.7"
 rattler-build = ">=0.55.0"
 git = "*"
 
-[dependencies]
+[package.dependencies]
 libxml2 = "*"
 zlib = "*"
 
