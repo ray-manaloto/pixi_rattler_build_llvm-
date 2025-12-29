@@ -1,0 +1,9 @@
+package:
+  name: llvm-22
+  version: "22.0.0dev"
+
+build:
+  script: |
+    mkdir -p $PREFIX/bin
+    echo "Hello from llvm-22" > $PREFIX/bin/llvm-22
+    chmod +x $PREFIX/bin/llvm-22
