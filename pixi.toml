@@ -2,8 +2,6 @@
 name = "llvm-reflection-workspace"
 channels = ["conda-forge", "https://prefix.dev/conda-forge"]
 platforms = ["linux-64"]
-# Enable the experimental 'pixi build' feature
-preview = ["pixi-build"]
 
 [package]
 name = "clang-p2996"
@@ -11,27 +9,20 @@ version = "22.0.0dev"
 description = "Experimental C++26 Reflection Compiler (Bloomberg Fork)"
 
 [package.build]
-# Use the latest version of the rattler-build backend
 backend = { name = "pixi-build-rattler-build", version = "0.1.*" }
 configuration = { recipe = "recipes/clang-p2996/recipe.yaml" }
 
 [build-dependencies]
-# Latest stable CMake (often required for LLVM builds)
 cmake = ">=3.30"
-# Latest Ninja for fast parallel builds
 ninja = ">=1.12"
-# Latest C++ compiler wrapper
 cxx-compiler = ">=1.7"
-# Pin to the latest rattler-build release for V1 recipe support
 rattler-build = ">=0.55.0"
 git = "*"
 
 [dependencies]
-# Runtime dependencies for the compiler toolchain
 libxml2 = "*"
 zlib = "*"
 
 [system-requirements]
-# Baseline for Ubuntu 24.04 (Noble) compatibility if using the latest base images
 linux = "6.8"
 libc = { family = "glibc", version = "2.39" }
