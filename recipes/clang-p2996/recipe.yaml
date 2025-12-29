@@ -1,0 +1,9 @@
+package:
+  name: clang-p2996
+  version: "22.0.0dev"
+
+build:
+  script: |
+    mkdir -p $PREFIX/bin
+    echo "Hello from clang-p2996" > $PREFIX/bin/clang-p2996
+    chmod +x $PREFIX/bin/clang-p2996
